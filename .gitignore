@@ -216,3 +216,24 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Market data
+data/raw/binance/*
+data/raw/okx/*
+data/processed/*
+data/duckdb/*
+
+!data/raw/okx/.gitkeep
+!data/raw/binance/.gitkeep
+!data/processed/.gitkeep
+!data/duckdb/.gitkeep
+
+data/**/*.csv
+data/**/*.zip
+data/**/*.parquet
+data/**/*.duckdb
+data/**/*.db
+data/**/*.sqlite
+data/**/*.sqlite3
+
+*-ignore.*

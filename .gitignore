@@ -236,4 +236,11 @@ data/**/*.db
 data/**/*.sqlite
 data/**/*.sqlite3
 
-*-ignore.*
+# Generated outputs
+outputs/reports/*
+outputs/charts/*
+outputs/backtests/*
+
+!outputs/reports/.gitkeep
+!outputs/charts/.gitkeep
+!outputs/backtests/.gitkeep

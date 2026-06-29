@@ -86,14 +86,13 @@ All downloaders must:
 The first Binance downloader must:
 
 - Download BTCUSDT and ETHUSDT 1-minute futures data.
-- Prefer monthly public archives where available.
-- Use daily archives or another documented public source for the current/incomplete month when
-  the Phase 1 specification confirms that behavior.
+- Use Binance Data Collection monthly public archives in Phase 1.
+- Treat unpublished current-month data as unavailable in Phase 1 rather than falling back to daily
+  archives or the REST API.
 - Skip verified files that already exist and resume after interruption.
 - Preserve archives beneath `data/raw/binance/futures_um/<symbol>/1m/`.
 - Log missing archives and source-side gaps.
-- Support checksum verification when the official archive source exposes checksums; the exact
-  checksum policy is a Phase 1 decision.
+- Support checksum verification when the official archive source exposes checksums.
 
 Phase 1 is successful when both initial symbols can be downloaded for a bounded range, rerunning
 does not duplicate valid files, and an interrupted run resumes safely.

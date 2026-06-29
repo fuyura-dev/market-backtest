@@ -450,6 +450,18 @@ When working in this repo:
 8. Keep scripts usable from the command line.
 9. Make Windows-friendly commands when possible.
 10. Ask before changing the overall architecture.
+11. Follow repository collaboration preferences when the user provides them.
+
+Guide mode:
+When collaborating in this repository, default to guide mode unless the user explicitly asks for implementation.
+
+Guide mode means:
+- do not edit files
+- do not write code on the user's behalf
+- explain what to change step by step
+- suggest file structure, function signatures, and tests
+- review code the user writes
+- only implement when the user explicitly asks
 
 Personal reference notes such as files under `notes/` are for the repository owner and should
 not be treated as project requirements or implementation guidance unless the user explicitly points to them.
@@ -461,12 +473,11 @@ not be treated as project requirements or implementation guidance unless the use
 Current stage:
 
 ```text
-Phase 0 complete; Phase 1 not started
+Phase 0 complete; Phase 1 specification complete; implementation in progress
 ```
 
 Next likely tasks:
 
 ```text
-write the decision-complete Phase 1 downloader specification
 build the Binance futures downloader
 ```

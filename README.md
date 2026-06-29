@@ -7,9 +7,7 @@ strategy research. It does not include live trading, alerting, or deployment cod
 
 ## Current status
 
-Phase 0 is complete: the Python package, local configuration, documentation, and test/lint
-tooling are working. Downloaders and data-processing commands are planned but are not implemented
-yet.
+Phase 1 Binance downloader specification is complete, and implementation is now in progress.
 
 See [PROJECT_PLAN.md](PROJECT_PLAN.md) for the roadmap and
 [docs/PROJECT_REQUIREMENTS.md](docs/PROJECT_REQUIREMENTS.md) for durable project requirements.

@@ -223,8 +223,8 @@ Do not commit raw or processed datasets, local databases, `.env` files, logs, or
 
 ## Current status
 
-Current status: **Phase 0 complete; Phase 1 not started**.
+Current status: **Phase 0 complete; Phase 1 specification complete; implementation in progress**.
 
 Packaging, configuration, documentation, ignore behavior, editable installation, tests, and lint
-checks have passed on Python 3.10. Phase 1 should not begin until its decision-complete downloader
-specification is written.
+checks have passed on Python 3.10. The Phase 1 downloader specification is decision-complete and
+the project is now in the Phase 1 implementation stage.

@@ -149,6 +149,8 @@ activemq-data/
 
 # Environments
 .env
+.env.*
+!.env.example
 .envrc
 .venv
 env/
@@ -237,6 +239,11 @@ data/**/*.sqlite
 data/**/*.sqlite3
 
 # Generated outputs
+outputs/*
+!outputs/.gitkeep
+!outputs/reports/
+!outputs/charts/
+!outputs/backtests/
 outputs/reports/*
 outputs/charts/*
 outputs/backtests/*

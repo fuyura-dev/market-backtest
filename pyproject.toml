@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "market-backtest"
+version = "0.1.0"
+description = "Local crypto futures market-data research and backtesting tools"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "duckdb>=1.1",
+    "polars>=1.0",
+    "pyarrow>=17",
+    "python-dotenv>=1.0",
+    "requests>=2.32",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3",
+    "ruff>=0.7",
+]
+dashboard = [
+    "pandas>=2.2",
+    "plotly>=5.24",
+    "streamlit>=1.39",
+]
+
+[tool.setuptools.packages.find]
+include = ["market_backtest*"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "SIM", "UP"]

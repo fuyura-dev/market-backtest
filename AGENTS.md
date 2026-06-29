@@ -100,6 +100,8 @@ Normalized candle schema
 ↓
 Parquet storage
 ↓
+Data validation
+↓
 DuckDB query layer
 ↓
 Resampling engine
@@ -210,6 +212,7 @@ Use this shared schema when possible:
 exchange
 market_type
 symbol
+canonical_symbol
 timeframe
 timestamp
 open
@@ -226,6 +229,9 @@ created_at
 ```
 
 All timestamps should be UTC.
+
+`symbol` should retain the venue-native instrument ID. `canonical_symbol` should identify
+equivalent markets across exchanges, for example `BTC-USDT`.
 
 All processed candle data should be sorted by timestamp.
 
@@ -304,7 +310,7 @@ source .venv/bin/activate
 Install editable package:
 
 ```bash
-pip install -e .
+python -m pip install -e ".[dev]"
 ```
 
 Run tests:
@@ -313,35 +319,14 @@ Run tests:
 pytest
 ```
 
-Run Streamlit dashboard:
+Run lint checks:
 
 ```bash
-streamlit run app/dashboard.py
+ruff check .
 ```
 
-Run Binance downloader:
-
-```bash
-python scripts/download_binance.py
-```
-
-Run OKX downloader:
-
-```bash
-python scripts/download_okx.py
-```
-
-Convert raw data:
-
-```bash
-python scripts/convert_to_parquet.py
-```
-
-Run validation:
-
-```bash
-python scripts/validate_data.py
-```
+Add downloader, conversion, validation, and dashboard commands here only after their entrypoint
+files exist.
 
 ---
 
@@ -436,15 +421,14 @@ Current priority order:
 1. Repo setup
 2. Binance futures downloader
 3. OKX swap downloader
-4. Data normalization
-5. Parquet output
+4. Data normalization and Parquet output
+5. Data validation
 6. DuckDB query layer
-7. Data validation
-8. Resampling
-9. Indicators
-10. Backtesting engine
-11. Streamlit dashboard
-12. Binance vs OKX comparison
+7. Resampling
+8. Indicators
+9. Backtesting engine
+10. Streamlit dashboard
+11. Binance vs OKX comparison
 ```
 
 Do not jump ahead to live trading, private alert integration, deployment, or a complex frontend unless explicitly requested.
@@ -455,7 +439,8 @@ Do not jump ahead to live trading, private alert integration, deployment, or a c
 
 When working in this repo:
 
-1. Read `PROJECT_PLAN.md` first.
+1. Read `PROJECT_PLAN.md`, `docs/PROJECT_REQUIREMENTS.md`, and the active phase specification in
+   `docs/phases/` first.
 2. Keep changes aligned with the project phases.
 3. Prefer simple, working implementations over over-engineered abstractions.
 4. Keep live alerting, deployment, and private automation code out of this repo.
@@ -473,15 +458,12 @@ When working in this repo:
 Current stage:
 
 ```text
-initial repo setup
+Phase 0 complete; Phase 1 not started
 ```
 
 Next likely tasks:
 
 ```text
-create pyproject.toml
-create .gitignore
-create package folders
-create Binance downloader
-create OKX downloader
+write the decision-complete Phase 1 downloader specification
+build the Binance futures downloader
 ```

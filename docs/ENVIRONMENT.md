@@ -1,143 +1,55 @@
 # Development Environment
 
-## Preferred Setup
+## Preferred setup
 
-This project is developed on Windows using Ubuntu WSL 2.
-
-The repo should live inside the WSL Linux filesystem for better performance:
-
-```bash
-~/projects/market-backtest
-```
-
-Avoid running the project from:
-
-```bash
-/mnt/c/Users/<WindowsUser>/...
-```
-
-This matters because the project will download and process large market datasets, including ZIP, CSV, Parquet, and DuckDB files.
-
----
-
-## Repo Location
-
-Recommended location:
+Use Ubuntu WSL 2 and keep the repository in the Linux filesystem for better performance with
+large ZIP, Parquet, and DuckDB files:
 
 ```bash
 ~/projects/market-backtest
 ```
 
-Check current location:
+Avoid placing the working tree under `/mnt/c/Users/...`.
+
+## Ubuntu prerequisites
+
+The project supports Python 3.10 or newer. Ubuntu 22.04's default Python 3.10 is sufficient.
 
 ```bash
-pwd
-```
-
-Expected result should look like:
-
-```bash
-/home/<wsl-user>/projects/market-backtest
-```
-
----
-
-## Ubuntu Packages
-
-Install basic system tools:
-
-```bash
-sudo apt update && sudo apt upgrade -y
+sudo apt update
 sudo apt install -y git curl unzip python3 python3-pip python3-venv
 ```
 
----
+## Create the development environment
 
-## Python Virtual Environment
-
-Create the virtual environment:
+From the repository root:
 
 ```bash
 python3 -m venv .venv
-```
-
-Activate it:
-
-```bash
 source .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
 ```
 
-Upgrade pip:
+Install the optional UI libraries only when dashboard work begins:
 
 ```bash
-pip install -U pip
+python -m pip install -e ".[dev,dashboard]"
 ```
 
-Install the project:
-
-```bash
-pip install -e .
-```
-
----
-
-## Common Commands
-
-Run tests:
+## Current verification commands
 
 ```bash
 pytest
+ruff check .
 ```
 
-Run the Streamlit dashboard:
+Downloader, conversion, validation, and Streamlit commands will be documented when those
+entrypoints exist.
 
-```bash
-streamlit run app/dashboard.py
-```
+## Data storage
 
-Run Binance downloader:
-
-```bash
-python scripts/download_binance.py
-```
-
-Run OKX downloader:
-
-```bash
-python scripts/download_okx.py
-```
-
-Convert raw data to Parquet:
-
-```bash
-python scripts/convert_to_parquet.py
-```
-
-Validate data:
-
-```bash
-python scripts/validate_data.py
-```
-
----
-
-## Opening in VS Code
-
-From inside the repo:
-
-```bash
-code .
-```
-
-This should open VS Code through WSL.
-
----
-
-## Data Storage
-
-Downloaded market data should stay local and should not be committed to Git.
-
-Local data folders:
+By default, local data is stored under:
 
 ```text
 data/raw/
@@ -145,4 +57,32 @@ data/processed/
 data/duckdb/
 ```
 
-These folders are intentionally ignored by Git except for `.gitkeep` files.
+To use another local disk or directory, create a local `.env` file:
+
+```bash
+cp .env.example .env
+```
+
+Then set an absolute path, or a path relative to the repository root:
+
+```dotenv
+MARKET_BACKTEST_DATA_DIR=/home/your-user/market-data
+```
+
+The setting can also be exported for a single shell session; process environment values take
+precedence over `.env`:
+
+```bash
+export MARKET_BACKTEST_DATA_DIR=/home/your-user/market-data
+```
+
+Downloaded datasets, local databases, `.env` files, and generated reports are intentionally
+ignored by Git.
+
+## Open in VS Code
+
+From the repository root in WSL:
+
+```bash
+code .
+```

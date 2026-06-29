@@ -219,6 +219,9 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+# Personal notes
+notes/
+
 # Market data
 data/raw/binance/*
 data/raw/okx/*

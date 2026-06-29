@@ -451,6 +451,9 @@ When working in this repo:
 9. Make Windows-friendly commands when possible.
 10. Ask before changing the overall architecture.
 
+Personal reference notes such as files under `notes/` are for the repository owner and should
+not be treated as project requirements or implementation guidance unless the user explicitly points to them.
+
 ---
 
 ## Current Stage
